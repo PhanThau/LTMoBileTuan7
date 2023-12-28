@@ -50,9 +50,30 @@ public class ToDoDAO {
         values.put("TITLE",toDo.getTitle());
         values.put("CONTENT",toDo.getContent());
         values.put("DATE",toDo.getDate());
-        values.put("TITLE",toDo.getTitle());
+        values.put("TYPE",toDo.getType());
         values.put("STATUS",toDo.getStatus());
         long check = database.insert("TODO" , null, values);
         return check != -1;
     }
+    public boolean updateTodo(ToDo toDo) {
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("TITLE", toDo.getTitle());
+        values.put("CONTENT", toDo.getContent());
+        values.put("DATE", toDo.getDate());
+        values.put("TYPE", toDo.getType());
+        values.put("STATUS", toDo.getStatus());
+
+        int rowsAffected = database.update("TODO", values, "ID=?", new String[]{String.valueOf(toDo.getId())});
+
+        return rowsAffected > 0;
+    }
+    public boolean deleteTodo(long todoId) {
+        SQLiteDatabase database = dbHelper.getWritableDatabase();
+        int rowsAffected = database.delete("TODO", "ID=?", new String[]{String.valueOf(todoId)});
+        return rowsAffected > 0;
+    }
+
+
 }

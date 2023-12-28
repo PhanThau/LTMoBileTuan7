@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
-    public DbHelper(Context context) { super(context,"TodoDatabase",null,1);}
+    public DbHelper(Context context) { super(context,"TodoDatabase",null,2);}
 
 
     @Override
